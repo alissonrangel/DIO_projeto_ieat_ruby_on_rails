@@ -21,6 +21,7 @@ Bundler.require(*Rails.groups)
 
 module Ieat
   class Application < Rails::Application
+    config.factory_bot.definition_file_paths = ["spec/factories"]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
