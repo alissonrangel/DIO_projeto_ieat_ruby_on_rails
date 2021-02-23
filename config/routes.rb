@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  # get 'orders/create'
   # get 'products/index'
+  resources :orders, only: [:create]
   resources :products, only: [:index, :new, :create]
   resources :restaurants
   devise_for :users

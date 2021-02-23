@@ -2,32 +2,27 @@
 <table>
     <thead>
         <tr>
-            <th>Nome</th>
-            <th>Produtos</th>                         
+            <th>Nome</th>                                     
         </tr>
     </thead>
     <tbody>
         <% Restaurant.all.each do |restaurant| %>
         <tr>
-            <td><%= restaurant.name %></td>                          
-            <td>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Valor</th>                
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% restaurant.products.each do |product| %>
-                        <tr>
-                            <td><%= product.name %></td>
-                            <td><%= product.value %></td>                
-                        </tr>
+            <td><%= restaurant.name %></td>                                      
+            <table>                
+                <tbody>
+                    <% restaurant.products.each do |p| %>
+                    <tr>
+                        <%= form_tag('/orders') do %>
+                            <%= hidden_field_tag :product_id, p.id %>
+                            <td>-><%= p.name %></td>
+                            <td>-><%= p.value %></td>
+                            <td><%= submit_tag 'Pedir' %></td>
                         <% end %>
-                    </tbody>
-                </table>
-            </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>            
         </tr>
         <% end %>
     </tbody>
